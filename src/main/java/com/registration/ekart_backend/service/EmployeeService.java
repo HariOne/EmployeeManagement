@@ -1,6 +1,7 @@
 package com.registration.ekart_backend.service;
 
 import com.registration.ekart_backend.dto.EmployeeDto;
+import com.registration.ekart_backend.mapper.EmployeeMapper;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ public interface EmployeeService {
     EmployeeDto getEmployeeById(Long empId);
 
     List<EmployeeDto> getAllEMployee();
+
+    EmployeeDto updateEmployee(Long empId,EmployeeDto employeeDto);
 }

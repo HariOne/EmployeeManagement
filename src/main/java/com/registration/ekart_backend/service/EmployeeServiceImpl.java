@@ -37,4 +37,17 @@ public class EmployeeServiceImpl implements  EmployeeService{
         List<EmployeeDto> listEmpDTO = listEmp.stream().map((listmap1) ->EmployeeMapper.mapEmployeeToEmployeeDto(listmap1)).collect(Collectors.toList());
         return listEmpDTO;
     }
+
+    @Override
+    public EmployeeDto updateEmployee(Long empId,EmployeeDto employeeDto) {
+
+        Employee employee=  employeeRepository.findById(empId).orElseThrow(()->new ResourceNotFoundException("Employee Not exists with the provided id:"+empId));
+
+        employee.setFirstName(employeeDto.getFirstName());
+        employee.setLastName(employeeDto.getLastName());
+        employee.setEmail(employeeDto.getEmail());
+
+       Employee saveEmp =  employeeRepository.save(employee);
+       return EmployeeMapper.mapEmployeeToEmployeeDto(saveEmp);
+    }
 }

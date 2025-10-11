@@ -32,4 +32,11 @@ public class Controller {
         List<EmployeeDto> allEmp = employeeService.getAllEMployee();
         return ResponseEntity.ok(allEmp);
     }
+
+     @PostMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long empID,
+                                                      @RequestBody EmployeeDto employeeDto){
+        EmployeeDto employeeDto1 = employeeService.updateEmployee(empID,employeeDto);
+        return  ResponseEntity.ok(employeeDto1);
+    }
 }
