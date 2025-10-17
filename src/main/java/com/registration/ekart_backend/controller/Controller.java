@@ -46,4 +46,12 @@ public class Controller {
         employeeService.deleteEmployee(empId);
         return ResponseEntity.ok("Employee Deleted Successfully");
     }
+
+
+    @PostMapping("/Login")
+    public ResponseEntity<String> genericLogin(@RequestBody EmployeeDto employeeDto){
+        EmployeeDto resutEmployee = employeeService.genericLogin(employeeDto);
+        return  ResponseEntity.ok("Success");
+    }
+
 }

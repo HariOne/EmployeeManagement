@@ -56,4 +56,16 @@ public class EmployeeServiceImpl implements  EmployeeService{
         Employee employee=  employeeRepository.findById(empId).orElseThrow(()->new ResourceNotFoundException("Employee Not exists with the provided id:"+empId));
          employeeRepository.delete(employee);
     }
+
+    @Override
+    public EmployeeDto genericLogin(EmployeeDto employeeDto) {
+        List<Employee> listEmp = employeeRepository.findAll();
+        Employee employee = EmployeeMapper.mapEmployeeDtotoEmployee(employeeDto);
+
+        Employee matchedEmployee = listEmp.stream()
+                .filter(emp -> emp.getFirstName().equalsIgnoreCase(employeeDto.getFirstName()))
+                .findFirst()
+                .orElse(null);
+        return EmployeeMapper.mapEmployeeToEmployeeDto(matchedEmployee);
+    }
 }

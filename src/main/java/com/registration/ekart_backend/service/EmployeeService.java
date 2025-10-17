@@ -16,4 +16,6 @@ public interface EmployeeService {
     EmployeeDto updateEmployee(Long empId,EmployeeDto employeeDto);
 
     public void deleteEmployee(Long empId);
+
+    EmployeeDto genericLogin(EmployeeDto employeeDto);
 }
